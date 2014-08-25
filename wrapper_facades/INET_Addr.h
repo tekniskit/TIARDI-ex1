@@ -1,6 +1,5 @@
 #pragma once 
 #include <Windows.h>
-#include "SOCK_Connector.h"
 
 class INET_Addr {
 public:
@@ -9,5 +8,5 @@ public:
 private:
 	sockaddr_in addr_;
 	
-	friend bool SOCK_Connector::connect(INET_Addr addr);
+	friend class SOCK_Connector;
 };

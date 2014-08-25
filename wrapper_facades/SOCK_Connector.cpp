@@ -1,5 +1,4 @@
 #include "SOCK_Connector.h"
-#include "stdafx.h"
 
 SOCK_Connector::SOCK_Connector()
 {
@@ -17,6 +16,7 @@ SOCK_Connector::SOCK_Connector()
 		isRunning = false;
 		WSACleanup();
 	}
+
 }
 
 bool SOCK_Connector::connect(INET_Addr addr)
@@ -36,4 +36,45 @@ bool SOCK_Connector::connect(INET_Addr addr)
 	}
 
 	return true; 
+}
+
+void SOCK_Connector::close()
+{
+	int iResult = closesocket(socket_);
+	if (iResult == SOCKET_ERROR) {
+		
+		WSACleanup();
+	}
+	
+	isRunning = false;
+}
+
+int SOCK_Connector::recive(char* buffer, u_int size)
+{
+	int iResult = _WINSOCKAPI_::recv(socket_, buffer, size,0);
+	if (iResult == SOCKET_ERROR) {
+		isRunning = false;
+		closesocket(socket_);
+		WSACleanup();
+		return 0;
+	}
+	return iResult;
+}
+
+int SOCK_Connector::send(char* sendbuf, u_int size)
+{
+	int iResult = _WINSOCKAPI_::send(socket_, sendbuf, (int)size, 0);
+	if (iResult == SOCKET_ERROR) {
+		isRunning = false;
+		closesocket(socket_);
+		WSACleanup();
+		return 0;
+	}
+
+	return iResult;
+}
+
+SOCK_Connector::~SOCK_Connector()
+{
+	WSACleanup();
 }

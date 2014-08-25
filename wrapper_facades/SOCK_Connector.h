@@ -1,3 +1,4 @@
+#pragma once 
 #include <winsock.h> 
 #include "INET_Addr.h"
 
@@ -13,17 +14,17 @@ public:
 
 	//send a message to the connected 
 	// return number of byte send. 
-	int send(char *buffer, long size);
+	int send(char *buffer, u_int size);
 
 	//revive a message 
 	//return the number of bytes recived. 
-	int recive(char* buffer, long maxSize);
+	int recive(char* buffer, u_int maxSize);
 
 	//Close the socket. 
 	void close(); 
 
 	bool isRunning = true; 
 
-private: 
+private:
 	SOCKET socket_; 
 };
