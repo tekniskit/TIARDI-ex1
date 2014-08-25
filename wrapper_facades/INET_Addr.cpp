@@ -1,4 +1,5 @@
 #include "INET_Addr.h"
+#include "stdafx.h"
 
 INET_Addr::INET_Addr(u_short port, u_long addr) {
 	memset(&addr_, 0, sizeof addr_);
