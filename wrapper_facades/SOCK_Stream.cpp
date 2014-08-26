@@ -1,7 +1,7 @@
 #include "SOCK_Stream.h"
 
 SOCK_Stream::~SOCK_Stream(){
-	close(handle_);
+	close();
 }
 
 void SOCK_Stream::set_handle(SOCKET h)
@@ -15,22 +15,32 @@ SOCKET SOCK_Stream::get_handle() const
 }
 
 //Regular I/O operations
-SSIZE_T	recv(void *buf, size_t leg, int flags){
-	
+int	SOCK_Stream::recv(char *buf, size_t len, int flags){
+	int iResult = _WINSOCKAPI_::recv(handle_, buf, len, flags);
+	if (iResult == SOCKET_ERROR) {
+		closesocket(handle_);
+		WSACleanup();
+		return 0;
+	}
+	return iResult;
 }
 
-SSIZE_T send(const char *buf, size_t len, int flags){
+int SOCK_Stream::send(const char *buf, size_t len, int flags){
 
+	int iResult = _WINSOCKAPI_::send(handle_, buf, (int)len, flags);
+	if (iResult == SOCKET_ERROR) {
+		closesocket(handle_);
+		WSACleanup();
+		return 0;
+	}
+
+	return iResult;
 }
 
-SSIZE_T recv_n(char *buf, size_t len, int flags){
+void SOCK_Stream::close(){
+	int iResult = closesocket(handle_);
+	if (iResult == SOCKET_ERROR) {
 
-}
-
-SSIZE_T send_n(const char *buf, size_t len, int flags){
-
-}
-
-void SOCK_Stream::close(SOCKET h){
-
+		WSACleanup();
+	}
 }
