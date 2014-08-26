@@ -15,7 +15,7 @@ int _tmain(int argc, char* argv[])
 
 	INET_Addr address(port, ip);
 
-	SOCK_Connector client();
+	SOCK_Connector client;
 
 	client.connect(address);
 
