@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 #include "stdafx.h"
-
-#include "INET_Addr.h"
 #include "SOCK_Connector.h"
+#include "SOCK_Stream.h"
+#include "INET_Addr.h"
 
 int _tmain(int argc, char* argv[])
 {
@@ -16,8 +16,10 @@ int _tmain(int argc, char* argv[])
 	INET_Addr address(port, ip);
 
 	SOCK_Connector client;
+	SOCK_Stream stream;
 
 	client.connect(address);
+	stream.set_handle(client.getSocket());
 
 	std::cout << "Connected to " << ip << ":" << port << std::endl;
 
@@ -25,10 +27,11 @@ int _tmain(int argc, char* argv[])
 	for (;;)
 	{
 		std::string clientName = "client";
-		client.send(clientName.c_str, clientName.length);
+		
+		stream.send(clientName.c_str, clientName.length);
 
 		std::string response;
-		client.receive(response.c_str, 50);
+		stream.recv(response.c_str, 50);
 
 		std::cout << response << std::endl;
 
