@@ -1,7 +1,11 @@
+#pragma once
+#include <winsock2.h>
+#include "INET_Addr.h"
+#include "SOCK_Stream.h"
+
 class SOCK_Acceptor {
 	public:
 		SOCK_Acceptor (const INET_Addr &addr);
-		void open (const INET_Addr &sock_addr);
 		void accept (SOCK_Stream &s);
 
 	private:

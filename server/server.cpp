@@ -1,6 +1,7 @@
 // server.cpp : Defines the entry point for the console application.
-//
-#include <Windows.h>
+#pragma comment(lib, "Ws2_32.lib")
+
+#include <winsock2.h>
 #include <iostream>
 #include <string>
 #include "stdafx.h"
@@ -15,28 +16,32 @@ int _tmain(int argc, char* argv[])
 	u_short port = 5500;
 
 	INET_Addr address(port, ip);
-	
+
 	// Passive-mode acceptor object.
 	SOCK_Acceptor server(address);
 	SOCK_Stream stream;
 
 	std::cout << "Listening on localhost:" << port << std::endl;
+	
+	// Accept a connection from a client.
+	server.accept(stream);
 
 	// Main server event loop.
 	for (;;)
 	{
-		// Accept a connection from a client.
-		server.accept(stream);
+		char clientName[7];
 
-		std::string clientName, message;
-
-		stream.recv(clientName.c_str, clientName.length, 0);
+		stream.recv(clientName, 7, 0);
 
 		std::cout << clientName << " has connected" << std::endl;
 
-		message = "Hello to you, " + clientName;
+		std::string message = "Hello to you, ";
+		message.append(clientName);
 
-		stream.send(message.c_str, message.length, 0);
+		char messageChars[100];
+		memcpy(messageChars, message.c_str(), message.length());
+
+		stream.send(messageChars, message.length(), 0);
 	}
 
 	return 0;

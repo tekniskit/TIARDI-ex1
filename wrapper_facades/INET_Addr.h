@@ -1,5 +1,5 @@
 #pragma once 
-#include <Windows.h>
+#include <winsock2.h>
 
 class INET_Addr {
 public:

@@ -1,6 +1,7 @@
 // client.cpp : Defines the entry point for the console application.
+#pragma comment(lib, "Ws2_32.lib")
 
-#include <Windows.h>
+#include <winsock2.h>
 #include <iostream>
 #include <string>
 #include "stdafx.h"
@@ -26,12 +27,12 @@ int _tmain(int argc, char* argv[])
 	// Main client event loop.
 	for (;;)
 	{
-		std::string clientName = "client";
+		char clientName[7] = "client";
 		
-		stream.send(clientName.c_str, clientName.length);
+		stream.send(clientName, 7, 0);
 
-		std::string response;
-		stream.recv(response.c_str, 50);
+		char response[100];
+		stream.recv(response, 50, 0);
 
 		std::cout << response << std::endl;
 

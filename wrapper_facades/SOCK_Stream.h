@@ -1,4 +1,5 @@
-#include <Windows.h>
+#pragma once
+#include <winsock2.h>
 
 class SOCK_Stream {
 public:

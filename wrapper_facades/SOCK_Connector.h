@@ -1,5 +1,5 @@
 #pragma once 
-#include <winsock.h> 
+#include <winsock2.h> 
 #include "INET_Addr.h"
 
 class SOCK_Connector{
