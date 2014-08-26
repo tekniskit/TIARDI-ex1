@@ -23,6 +23,14 @@ SSIZE_T send(const char *buf, size_t len, int flags){
 
 }
 
+SSIZE_T recv_n(char *buf, size_t len, int flags){
+
+}
+
+SSIZE_T send_n(const char *buf, size_t len, int flags){
+
+}
+
 void SOCK_Stream::close(SOCKET h){
 
 }
