@@ -16,7 +16,7 @@ SOCKET SOCK_Stream::get_handle() const
 
 //Regular I/O operations
 SSIZE_T	recv(void *buf, size_t leg, int flags){
-
+	
 }
 
 SSIZE_T send(const char *buf, size_t len, int flags){

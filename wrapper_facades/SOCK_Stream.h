@@ -3,7 +3,7 @@
 class SOCK_Stream {
 public:
 	//Default and copy construcotr
-	SOCK_Stream() : handle_ (INVALID_HANDLE_VALUE){}
+	SOCK_Stream() : handle_(INVALID_SOCKET){} // Changed to INVALID_SOCKET insted of the book's INVALID_HANDLE_VALUE
 	SOCK_Stream(SOCKET h) : handle_(h){}
 
 	//Automatically close the handle on destruction.
