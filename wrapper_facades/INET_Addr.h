@@ -1,3 +1,4 @@
+#pragma once 
 #include <Windows.h>
 
 class INET_Addr {
@@ -10,4 +11,6 @@ public:
 		
 private:
 	mutable sockaddr_in addr_; // Mutable needed for addr() method to compile
+	
+	friend class SOCK_Connector;
 };
