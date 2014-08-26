@@ -2,6 +2,7 @@
 //
 #include <Windows.h>
 #include <iostream>
+#include <string>
 #include "stdafx.h"
 
 #include "INET_Addr.h"
@@ -26,6 +27,16 @@ int _tmain(int argc, char* argv[])
 	{
 		// Accept a connection from a client.
 		server.accept(stream);
+
+		std::string clientName, message;
+
+		stream.recv(clientName.c_str, clientName.length, 0);
+
+		std::cout << clientName << " has connected" << std::endl;
+
+		message = "Hello to you, " + clientName;
+
+		stream.send(message.c_str, message.length, 0);
 	}
 
 	return 0;
