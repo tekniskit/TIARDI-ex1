@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="INET_Addr.h" />
+    <ClInclude Include="SOCK_Acceptor.h" />
     <ClInclude Include="SOCK_Connector.h" />
     <ClInclude Include="SOCK_Stream.h" />
     <ClInclude Include="stdafx.h" />
@@ -82,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SOCK_Stream.cpp" />
+    <ClCompile Include="SOCK_Acceptor.cpp" />
     <ClCompile Include="INET_Addr.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeaderFile>
