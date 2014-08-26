@@ -27,12 +27,18 @@
     <ClInclude Include="INET_Addr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SOCK_Connector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="INET_Addr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SOCK_Connector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

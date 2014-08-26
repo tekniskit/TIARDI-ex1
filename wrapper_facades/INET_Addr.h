@@ -1,3 +1,4 @@
+#pragma once 
 #include <Windows.h>
 
 class INET_Addr {
@@ -6,4 +7,6 @@ public:
 		
 private:
 	sockaddr_in addr_;
+	
+	friend class SOCK_Connector;
 };
