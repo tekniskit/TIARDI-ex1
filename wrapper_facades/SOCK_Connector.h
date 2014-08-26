@@ -20,11 +20,13 @@ public:
 	//return the number of bytes recived. 
 	int recive(char* buffer, u_int maxSize);
 
+	SOCKET getSocket(); 
+
 	//Close the socket. 
 	void close(); 
 
 	bool isRunning = true; 
 
 private:
-	SOCKET socket_; 
+	SOCKET socket_ = INVALID_SOCKET;
 };

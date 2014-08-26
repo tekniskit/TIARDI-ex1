@@ -14,15 +14,11 @@ public:
 	SOCKET get_handle() const;
 
 	//Regular I/O operations
-	SSIZE_T	recv(void *buf, size_t len, int flags);
-	SSIZE_T send(const char *buf, size_t len, int flags);
-
-	//I/O operations for "short" receives and sends.
-	SSIZE_T recv_n(char *buf, size_t len, int flags);
-	SSIZE_T send_n(const char *buf, size_t len, int flags);	
+	int	recv(char *buf, size_t len, int flags);
+	int send(const char *buf, size_t len, int flags);
 
 private:
 	//Socket handle for exchanging socket data.
 	SOCKET handle_;
-	void close(SOCKET h);
+	void close();
 };
