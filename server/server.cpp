@@ -37,11 +37,9 @@ int _tmain(int argc, char* argv[])
 
 		std::string message = "Hello to you, ";
 		message.append(clientName);
+		message.append("\n");
 
-		char messageChars[100];
-		memcpy(messageChars, message.c_str(), message.length());
-
-		stream.send(messageChars, message.length(), 0);
+		stream.send(message.c_str(), message.length(), 0);
 	}
 
 	return 0;
