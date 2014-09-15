@@ -32,12 +32,15 @@ int _tmain(int argc, char* argv[])
 		stream.send(clientName, 7, 0);
 
 		std::string response;
-		char buffer[100];
+		char buffer[10];
+		int length;
 		
-		int length = stream.recv(buffer, 100, 0);
-		response.append(buffer);
+		do {
+			length = stream.recv(buffer, 10, 0);
+			response.append(buffer, length);
+		} while (response.find("\n") == std::string::npos);
 
-		response.erase(response.find("\n"), std::string::npos);
+		response.erase(response.find("\n"));
 
 		std::cout << response << std::endl;
 
